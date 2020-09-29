@@ -1,0 +1,17 @@
+/// 跨浏览器的渐变背景，垂直渐变，自上而下
+///
+/// @group 外观
+/// @name gradient_vertical
+/// @param {Color} $start-color [#555] - 渐变的开始颜色
+/// @param {Color} $end-color [#333] - 渐变的结束颜色
+/// @param {Number} $start-percent [0%] - 渐变的开始位置，需要以百分号为单位
+/// @param {Number} $end-percent [100%] - 渐变的结束位置，需要以百分号为单位
+@mixin gradient_vertical($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%){
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop($start-percent, $start-color), color-stop($end-percent, $end-color)); // Safari 4-5, Chrome 1-9
+    background-image: -webkit-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Safari 5.1-6, Chrome 10+
+    background-image: -moz-linear-gradient(top, $start-color $start-percent, $end-color $end-percent); // Firefox 3.6+
+    background-image: -o-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Opera 12
+    background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=0); // IE9 and down
+}

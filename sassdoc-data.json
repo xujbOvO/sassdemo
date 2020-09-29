@@ -1,0 +1,87 @@
+[
+  {
+    "description": "颜色：红色\n",
+    "commentRange": {
+      "start": 1,
+      "end": 6
+    },
+    "context": {
+      "type": "variable",
+      "name": "color-red",
+      "value": "red",
+      "scope": "private",
+      "line": {
+        "start": 7,
+        "end": 7
+      }
+    },
+    "access": "public 可访问范围",
+    "author": [
+      "xujb"
+    ],
+    "example": [
+      {
+        "type": "scss",
+        "code": "//SCSS\n.test{ color: $color-red; }"
+      }
+    ],
+    "group": [
+      "undefined"
+    ],
+    "file": {
+      "path": "sassMagic.scss",
+      "name": "sassMagic.scss"
+    }
+  },
+  {
+    "description": "跨浏览器的渐变背景，垂直渐变，自上而下\n\n",
+    "commentRange": {
+      "start": 1,
+      "end": 8
+    },
+    "context": {
+      "type": "mixin",
+      "name": "gradient_vertical",
+      "code": "\n    background-image: -webkit-gradient(linear, left top, left bottom, color-stop($start-percent, $start-color), color-stop($end-percent, $end-color)); // Safari 4-5, Chrome 1-9\n    background-image: -webkit-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Safari 5.1-6, Chrome 10+\n    background-image: -moz-linear-gradient(top, $start-color $start-percent, $end-color $end-percent); // Firefox 3.6+\n    background-image: -o-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Opera 12\n    background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+\n    background-repeat: repeat-x;\n    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=0); // IE9 and down\n",
+      "line": {
+        "start": 9,
+        "end": 17
+      }
+    },
+    "group": [
+      "外观"
+    ],
+    "parameter": [
+      {
+        "type": "Color",
+        "name": "start-color",
+        "default": "#555",
+        "description": "渐变的开始颜色"
+      },
+      {
+        "type": "Color",
+        "name": "end-color",
+        "default": "#333",
+        "description": "渐变的结束颜色"
+      },
+      {
+        "type": "Number",
+        "name": "start-percent",
+        "default": "0%",
+        "description": "渐变的开始位置，需要以百分号为单位"
+      },
+      {
+        "type": "Number",
+        "name": "end-percent",
+        "default": "100%",
+        "description": "渐变的结束位置，需要以百分号为单位"
+      }
+    ],
+    "access": "public",
+    "require": [],
+    "file": {
+      "path": "src\\_sassTest.scss",
+      "name": "_sassTest.scss"
+    }
+  }
+]

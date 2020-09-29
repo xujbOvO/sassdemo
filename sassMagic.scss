@@ -1,0 +1,56 @@
+/// 颜色值
+/// @access public
+/// @author xujb
+/// @example 
+/// //SCSS
+/// .test{ color: $color-red; }
+$color-red: red;
+
+/// Returns the specificity map or value of given simple/complex/multiple selector(s).
+/// @access public
+/// @param {List | String} $initial-selector - selector returned by '&'
+/// @param {Bool} $integer - output specificity as integer? (default: false)
+/// @return {Map | Number} specificity map or specificity value represented as integer
+@function specificity($selector, $integer) {}
+
+/// 简化position编写
+/// @access public
+/// @group common
+/// @author 大漠
+/// @example 
+/// //SCSS
+/// 
+/// .absolute{
+///   @include position(absolute,top 10px right 20px);
+/// }
+/// .absolute{
+///   @include position(absolute,top 0 right 0 bottom 0 left 0);
+/// }
+///	
+/// //Output CSS
+/// 
+/// .absolute {
+///   top: 10px;
+///   right: 20px;
+///   position: absolute; 
+/// }
+/// 
+/// .absolute {
+///   top: 0;
+///   right: 0;
+///   bottom: 0;
+///   left: 0;
+///   position: absolute; 
+/// }
+/// @link https://github.com/W3cplus/SassMagic/blob/master/src/mixins/_position.scss#L34-L42
+/// @param {String} $position - 可选值: `static` | `relative` | `absolute` | `fixed`
+/// @param {String} $args - 可设置值: `top` | `right` | `bottom` | `left`
+@mixin position($position,$args){
+    position: $position;
+	@each $o in top right bottom left {
+		$i: index($args, $o);
+		@if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number {
+			#{$o}: nth($args, $i + 1);
+		}
+	}
+}
